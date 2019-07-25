@@ -6,22 +6,26 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class AdapterSong extends RecyclerView.Adapter<AdapterSong.ViewAdapter> {
+
+public class AdapterSong extends RecyclerView.Adapter<AdapterSong.ViewAdapter>  {
 
 
     Context mContext;
-    private ArrayList<String> judulLagu;
+    private List<String> titleSong;
     private CustomItemClickListener clickListener;
 
-
-    public AdapterSong(Context mContext, ArrayList<String> judulLagu, CustomItemClickListener clickListener) {
+    public AdapterSong(Context mContext, List<String> titleSong, CustomItemClickListener clickListener) {
         this.mContext = mContext;
-        this.judulLagu = judulLagu;
+        this.titleSong = titleSong;
         this.clickListener = clickListener;
+
     }
 
 
@@ -44,24 +48,31 @@ public class AdapterSong extends RecyclerView.Adapter<AdapterSong.ViewAdapter> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewAdapter viewAdapter, int i) {
-        viewAdapter.titleSong.setText(judulLagu.get(i).replace("",""));
+        viewAdapter.titleSong.setText(titleSong.get(i).replace("",""));
+
     }
 
     @Override
     public int getItemCount() {
-        return judulLagu.size();
+        return titleSong.size();
     }
 
+
     public class ViewAdapter extends RecyclerView.ViewHolder{
-
-
         TextView titleSong;
 
         public ViewAdapter(@NonNull View itemView) {
-            super(itemView);
-
+           super(itemView);
         titleSong = (TextView) itemView.findViewById(R.id.judul);
         }
     }
 
+
+   // bagian filter buat search
+    public void updateList(List<String> newList)
+    {
+    titleSong = new ArrayList<>();
+   titleSong.addAll(newList);
+    notifyDataSetChanged();
+    }
 }
