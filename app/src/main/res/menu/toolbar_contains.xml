@@ -4,18 +4,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
-    <item
-        android:title="search"
-        android:id="@+id/action_search"
 
-        app:showAsAction="ifRoom|collapseActionView"
-        app:actionViewClass="android.widget.SearchView" />
 
     <item
         android:title="back"
-        android:id="@+id/back"
+        android:id="@+id/backcontains"
         app:showAsAction="ifRoom|collapseActionView"
 
-    />
+        />
 
 </menu>
